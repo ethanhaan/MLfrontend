@@ -26,7 +26,7 @@ export default ({task}) => {
 			}}
 			onMouseEnter={()=>setHovered(true)}
 			onMouseLeave={()=>setHovered(false)}
-			onClick={()=>setMain({...main, model: task })}
+			onClick={()=>setMain({...main, model: task, selectedClassifier: null })}
 		>
 			{task}
 			<AnimatePresence>

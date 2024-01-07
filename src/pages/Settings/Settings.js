@@ -14,7 +14,7 @@ export default () => {
 
 	return (
 		<Mainframe sx={{
-			flex: 2,
+			flex: 1.5,
 			display: "flex",
 			flexDirection: "column",
 		

@@ -10,7 +10,7 @@ export default () => {
 	const dropdownMenu = [
 		{
 			name: "Basic classification",
-			classificationTasks: ["IMDB Ratings", "Wine Quality Prediction"]
+			classificationTasks: ["IMDB Ratings", "Wine Quality Prediction", "Diabetes Prediction"]
 		},
 		{
 			name: "Natural Language Processing",
