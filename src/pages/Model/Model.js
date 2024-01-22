@@ -21,7 +21,7 @@ export default () => {
 			overflowY: 'auto',
 			paddingLeft: '0px',
 		}}>
-			{/* <DiabetesFeatures/> */}
+			<DiabetesFeatures/>
 			{
 				(main.html && !main.selectedClassifier) && (
 					<iframe

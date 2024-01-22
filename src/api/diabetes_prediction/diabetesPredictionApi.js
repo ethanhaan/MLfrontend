@@ -1,5 +1,5 @@
 import axiosClient from '../axiosClient';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 
 export const useGetDiabetesPredictionModels = () => useQuery({
     queryKey: ['diabetesPredictionModels'],
@@ -18,4 +18,19 @@ export const useGetDiabetesPredictionHtml = () => useQuery({
 		const response = await axiosClient.get(pathToHtmlFile);
 		return response.data;
 	}
+})
+
+export const usePostDiabetesPredictionRandomForest = () => useMutation({
+  queryKey: ['diabetesPredictionRandomForest'],
+  mutationFn: async () => {
+    const pathToHtmlFile = "/model/diabetes_prediction/random_forest"
+    const response = await axiosClient.post(pathToHtmlFile);
+    return response.data;
+  },
+  onSuccess: (data) => {
+    console.log("Response data: ", data);
+  },
+  onError: (error) => {
+    console.log("Error: ", error);
+  }
 })
