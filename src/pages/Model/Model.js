@@ -48,7 +48,7 @@ export default () => {
 									.map(word => word.charAt(0).toUpperCase() + word.slice(1))
 									.join(' ')}
 							</Heading>
-							<Features/>
+							{/* <Features/> */}
 						</Box>
 					)
 				}
