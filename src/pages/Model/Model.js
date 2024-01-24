@@ -1,6 +1,4 @@
 import Mainframe from '../../components/Mainframe';
-import DefaultPages from './features/DefaultPages';
-import ClassifierPages from './features/ClassifierPages';
 import { useEffect, useState, useContext} from 'react';
 import { useTheme } from '@mui/material/styles';
 import { Box } from '@mui/material';
