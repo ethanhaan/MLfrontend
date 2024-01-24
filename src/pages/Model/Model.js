@@ -1,13 +1,12 @@
-import Mainframe from '../../components/Mainframe.js';
-import Heading from '../../components/Heading.js';
-import Features from './features/Features.js';
+import Mainframe from '../../components/Mainframe';
+import DefaultPages from './features/DefaultPages';
+import ClassifierPages from './features/ClassifierPages';
 import { useEffect, useState, useContext} from 'react';
 import { useTheme } from '@mui/material/styles';
-import { MainContext } from '../MLPanel/MLPanel.js';
 import { Box } from '@mui/material';
-import { useGetImdbRatingsHtml } from '../../api/imdb_ratings/imdbRatingsApi.js';
-import { MailRounded } from '@mui/icons-material';
-import DiabetesFeatures from './features/DiabetesFeatures.js'; 
+import { MainContext } from '../../providers/MainProvider';
+import ImdbRatingsParent from './features/imdb_ratings/ImdbRatingsParent';
+import BreadCrumbs from './features/BreadCrumbs';
 
 export default () => {
 
@@ -17,42 +16,25 @@ export default () => {
 	return (
 		<Mainframe sx={{
 			flex: 3.5,
-			overflowX: 'auto',
-			overflowY: 'auto',
 			paddingLeft: '0px',
+      display: "flex",
+      flexDirection: "column",
 		}}>
-			<DiabetesFeatures/>
-			{
-				(main.html && !main.selectedClassifier) && (
-					<iframe
-						srcDoc={main.html}
-						title="IMDB Ratings"
-						width="100%"
-						height="100%"
-						style={{ 
-							border: 'none',
-							overflowX: 'scroll',
-						}}
-					/>
-				)
-			}
-			<Box sx={{
-				paddingLeft: '36px'
-			}}>
-				{
-					main.selectedClassifier && (
-						<Box>
-							<Heading sx={{ marginBottom: '20px' }}>
-								{main.selectedClassifier
-									.split('_')
-									.map(word => word.charAt(0).toUpperCase() + word.slice(1))
-									.join(' ')}
-							</Heading>
-							<Features/>
-						</Box>
-					)
-				}
-			</Box>
+      <Box sx={{ 
+        marginLeft: "36px",
+        paddingBottom: "12px",
+        borderBottom: "solid 1px #3b3b3b",
+      }}>
+        <BreadCrumbs />
+      </Box>
+      <Box sx={{
+        position: "relative",
+        height: "100%",
+      }}>
+        { main.model === "IMDB Ratings" && (
+          <ImdbRatingsParent />
+        )}
+      </Box>
 		</Mainframe>
 	)
 }
