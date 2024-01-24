@@ -20,17 +20,14 @@ export const useGetDiabetesPredictionHtml = () => useQuery({
 	}
 })
 
-export const usePostDiabetesPredictionRandomForest = () => useMutation({
+export const usePostDiabetesPrediction = () => useMutation({
   queryKey: ['diabetesPredictionRandomForest'],
-  mutationFn: async (formValues) => {
-    const pathToHtmlFile = "/model/diabetes_prediction/random_forest"
+  mutationFn: async ({ formValues, classifier }) => {
+    const pathToHtmlFile = `/model/diabetes_prediction/${classifier}`
     const response = await axiosClient.post(pathToHtmlFile, formValues);
     return response.data;
   },
   onSuccess: (data) => {
     console.log("Response: ", data);
-  },
-  onError: (error) => {
-    console.log("Error: ", error);
   }
 })

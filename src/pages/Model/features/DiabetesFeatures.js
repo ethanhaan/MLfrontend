@@ -1,13 +1,16 @@
 import { useEffect, useState, useContext} from 'react';
 import { useTheme } from '@mui/material/styles';
+import { MainContext } from '../../MLPanel/MLPanel.js';
 import { Box } from '@mui/material';
 import IntegerInput from '../components/IntegerInput.js';
+import IntegerSlider from '../components/IntegerSlider.js';
 import SubmitButton from '../components/SubmitButton.js';
-import { faPersonPregnant, faCubesStacked } from '@fortawesome/free-solid-svg-icons';
-import { faDropletPercent } from '@fortawesome/pro-solid-svg-icons';
-import { usePostDiabetesPredictionRandomForest } from '../../../api/diabetes_prediction/diabetesPredictionApi.js';
+import { faPersonPregnant, faCubesStacked, faDroplet, faRuler, faFlask, faWeightScale, faCircleInfo, faUser } from '@fortawesome/free-solid-svg-icons';
+import { usePostDiabetesPrediction } from '../../../api/diabetes_prediction/diabetesPredictionApi.js';
 
 export default () => {
+
+	const { main, setMain } = useContext(MainContext);
 
   const [formValues, setFormValues] = useState({
     Pregnancies: '',
@@ -21,10 +24,11 @@ export default () => {
   })
 
   // Make dictionary with all mutate api's and call based on Model.CurrentClassifier
-  const { mutate: postDiabetesPredictionRandomForest, isLoading, isError } = usePostDiabetesPredictionRandomForest();
+  const { mutate: postDiabetesPrediction, isLoading, isError } = usePostDiabetesPrediction();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
     setFormValues(prevState => ({
       ...prevState,
       [name]: value
@@ -32,7 +36,8 @@ export default () => {
   }
 
   const handleSubmit = () => {
-    postDiabetesPredictionRandomForest(formValues);
+    postDiabetesPrediction({formValues, classifier: main.selectedClassifier});
+    console.log(main.selectedClassifier);
     console.log(formValues);
   }
     
@@ -59,6 +64,7 @@ export default () => {
                 onChange={handleInputChange} 
                 value={formValues["Pregnancies"]}
                 icon={faPersonPregnant}
+                // type=
               />
               <IntegerInput 
                 name="Glucose" 
@@ -70,13 +76,18 @@ export default () => {
                 name="BloodPressure" 
                 onChange={handleInputChange} 
                 value={formValues["BloodPressure"]}
-                icon={faDropletPercent}
+                icon={faDroplet}
               />
               <IntegerInput 
                 name="SkinThickness" 
                 onChange={handleInputChange} 
                 value={formValues["SkinThickness"]}
-                icon={faCubesStacked}
+                icon={faRuler}
+              />
+              <IntegerSlider
+                step={5}
+                min={0}
+                max={40}
               />
               <SubmitButton onClick={handleSubmit}/>
           </Box>
@@ -87,31 +98,32 @@ export default () => {
               flexDirection: 'column',
               justifyContent: 'top',
               alignItems: 'flex-start',
-              // border: '1px solid green',
           }}>
               <IntegerInput 
                 name="Insulin" 
                 onChange={handleInputChange} 
                 value={formValues["Insulin"]}
-                icon={faPersonPregnant}
+                icon={faFlask}
               />
               <IntegerInput 
                 name="BMI" 
                 onChange={handleInputChange} 
                 value={formValues["BMI"]}
-                icon={faCubesStacked}
+                icon={faWeightScale}
+                float
               />
               <IntegerInput 
                 name="DiabetesPedigreeFunction" 
                 onChange={handleInputChange} 
                 value={formValues["DiabetesPedigreeFunction"]}
-                icon={faPersonPregnant}
+                icon={faCircleInfo}
+                float
               />
               <IntegerInput 
                 name="Age" 
                 onChange={handleInputChange} 
                 value={formValues["Age"]}
-                icon={faCubesStacked}
+                icon={faUser}
               />
           </Box>
       </Box>
