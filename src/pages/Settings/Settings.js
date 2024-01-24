@@ -3,9 +3,9 @@ import DropdownNested from './components/DropdownNested.js';
 import Mainframe from '../../components/Mainframe.js';
 import Heading from '../../components/Heading.js';
 import Subheading from '../../components/Subheading.js';
-import { Box, Autocomplete, TextField, InputBase, Button, Select, MenuItem } from '@mui/material';
+import { Box, Autocomplete, TextField, InputBase, Button, Select, MenuItem, Switch } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { MainContext } from '../MLPanel/MLPanel.js';
+import { MainContext } from '../../providers/MainProvider';
 
 export default () => {
 
@@ -14,13 +14,13 @@ export default () => {
 
 	return (
 		<Mainframe sx={{
-			flex: 1.5,
+			width: "280px",
 			display: "flex",
 			flexDirection: "column",
 		
 		}}>
 			<Heading sx={{
-				marginBottom: "24px"
+				marginBottom: "42px"
 			}}>
 				ML Selection Portal
 			</Heading>
@@ -32,22 +32,6 @@ export default () => {
 				Classification Task
 			</Subheading>
 			<DropdownNested />
-			<Subheading sx={{
-				marginTop: "18px",
-				marginBottom: "12px",
-			}}>
-				Classifier/Model
-			</Subheading>
-			<Select
-				value={main.selectedClassifier}
-				onChange={(event)=>{setMain({...main, selectedClassifier: event.target.value })}}
-				displayEmpty
-				sx={{ height: "36px", width: "100%" }}
-			>
-				{main.modelsAvailable.map((model) => (
-					<MenuItem value={model}>{model}</MenuItem>
-				))}
-			</Select>
 		</Mainframe>
 	)
 }

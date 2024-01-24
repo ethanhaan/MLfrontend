@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { Box } from '@mui/material';
 import { ReactComponent as RightArrow } from '../../../icons/rightarrow.svg';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MainContext } from '../../MLPanel/MLPanel.js';
+import { MainContext } from '../../../providers/MainProvider';
 
-export default ({task}) => {
+export default ({ task }) => {
 
 	const [ hovered, setHovered ] = useState(false);
 	const { main, setMain } = useContext(MainContext);
@@ -16,7 +16,7 @@ export default ({task}) => {
 				fontSize: "14px",
 				transition: "150ms ease-out all",
 				borderRadius: "5px",
-				padding: "6px",
+				padding: "8px",
 				"&:hover": { backgroundColor: "#00000009" },
 				cursor: "pointer",
 				display: "flex",
@@ -26,7 +26,12 @@ export default ({task}) => {
 			}}
 			onMouseEnter={()=>setHovered(true)}
 			onMouseLeave={()=>setHovered(false)}
-			onClick={()=>setMain({...main, model: task, selectedClassifier: null })}
+			onClick={()=>setMain({
+        ...main, 
+        model: task, 
+        selectedClassifier: null, 
+        modelState: "DEFAULT" 
+      })}
 		>
 			{task}
 			<AnimatePresence>
