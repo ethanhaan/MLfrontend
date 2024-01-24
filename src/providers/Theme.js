@@ -44,6 +44,13 @@ export const theme = createTheme({
 				}
 			}
 		},
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          border: "none",
+        }
+      }
+    },
 		MuiInputBase: {
 			defaultProps: {
 				fullWidth: true,

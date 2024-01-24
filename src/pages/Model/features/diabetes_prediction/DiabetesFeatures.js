@@ -4,6 +4,7 @@ import { Box } from '@mui/material';
 import IntegerInput from '../components/IntegerInput.js';
 import SubmitButton from '../components/SubmitButton.js';
 import { faPersonPregnant, faCubesStacked } from '@fortawesome/free-solid-svg-icons';
+import { faDropletPercent } from '@fortawesome/pro-solid-svg-icons';
 import { usePostDiabetesPredictionRandomForest } from '../../../api/diabetes_prediction/diabetesPredictionApi.js';
 
 export default () => {
@@ -17,7 +18,6 @@ export default () => {
     BMI: '',
     DiabetesPedigreeFunction: '',
     Age: '',
-    Outcome: '',
   })
 
   // Make dictionary with all mutate api's and call based on Model.CurrentClassifier
@@ -66,6 +66,18 @@ export default () => {
                 value={formValues["Glucose"]}
                 icon={faCubesStacked}
               />
+              <IntegerInput 
+                name="BloodPressure" 
+                onChange={handleInputChange} 
+                value={formValues["BloodPressure"]}
+                icon={faDropletPercent}
+              />
+              <IntegerInput 
+                name="SkinThickness" 
+                onChange={handleInputChange} 
+                value={formValues["SkinThickness"]}
+                icon={faCubesStacked}
+              />
               <SubmitButton onClick={handleSubmit}/>
           </Box>
           <Box sx={{
@@ -77,6 +89,30 @@ export default () => {
               alignItems: 'flex-start',
               // border: '1px solid green',
           }}>
+              <IntegerInput 
+                name="Insulin" 
+                onChange={handleInputChange} 
+                value={formValues["Insulin"]}
+                icon={faPersonPregnant}
+              />
+              <IntegerInput 
+                name="BMI" 
+                onChange={handleInputChange} 
+                value={formValues["BMI"]}
+                icon={faCubesStacked}
+              />
+              <IntegerInput 
+                name="DiabetesPedigreeFunction" 
+                onChange={handleInputChange} 
+                value={formValues["DiabetesPedigreeFunction"]}
+                icon={faPersonPregnant}
+              />
+              <IntegerInput 
+                name="Age" 
+                onChange={handleInputChange} 
+                value={formValues["Age"]}
+                icon={faCubesStacked}
+              />
           </Box>
       </Box>
   )
