@@ -4,8 +4,9 @@ import { Box } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import InputAdornment from '@mui/material/InputAdornment';
+import { motion } from 'framer-motion';
 
-export default function IntegerInput({ value, onChange, name, icon, float = false }) {
+export default function Input({ value, onChange, name, icon, type, float = false }) {
 
   const [error, setError] = useState(false);
 
@@ -29,18 +30,23 @@ export default function IntegerInput({ value, onChange, name, icon, float = fals
   }
 
   return (
-    <Box sx={{
-      padding: '10px',
-      width: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}>
+    <motion.div
+      style={{
+        transition: "150ms ease-out all",
+        padding: '20px 0px',
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }} 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
       <TextField
         error = {error}
         id = "outlined-error-helper-text"
 
-        type = "number"
+        type = {type}
         name = {name}
         value = {value}
         label = {`Enter ${name}`}
@@ -54,6 +60,6 @@ export default function IntegerInput({ value, onChange, name, icon, float = fals
           )
         }}
       />
-    </Box>
+    </motion.div>
   )
 }

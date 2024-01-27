@@ -27,6 +27,31 @@ export const theme = createTheme({
 				}
 			}
 		},
+    MuiSlider: {
+      styleOverrides: {
+        root: {
+          width: '187px',
+          color: '#E5E5E5',
+          height: 8,
+          padding: '15px 0'
+        },
+        thumb: {
+          boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+          height: 18,
+          width: 18,
+          backgroundColor: '#fff',
+          border: '1px solid #E5E5E5',
+          '&:hover': {
+            height: 20,
+            width: 20,
+            boxShadow: '0 4px 8px rgba(0,0,0,0.3)'
+          },
+          '&:active': {
+            boxShadow: '0 2px 3px rgba(0,0,0,0.1)',
+          },
+        }
+      }
+    },
 		MuiPaper: {
 			styleOverrides: {
 				root: {

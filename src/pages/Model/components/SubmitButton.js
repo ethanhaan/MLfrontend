@@ -3,16 +3,20 @@ import { Box, Button } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import InputAdornment from '@mui/material/InputAdornment';
 import SendIcon from '@mui/icons-material/Send';
+import { motion } from 'framer-motion';
 
 export default function SubmitButton({ onClick }) {
   return (
-    <Box
-      sx={{
+    <motion.div
+      style={{
         width: '100%',
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
+        justifyContent: 'right',
+        alignItems: 'center',
+        marginTop: '20px', 
       }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
     >
       <Button
         variant="contained"
@@ -25,6 +29,6 @@ export default function SubmitButton({ onClick }) {
       >
         Submit
       </Button>
-    </Box>
+    </motion.div>
   )
 }

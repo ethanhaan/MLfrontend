@@ -1,6 +1,8 @@
 import { Box } from '@mui/material';
 import { useContext } from 'react';
 import { MainContext } from '../../../../providers/MainProvider';
+import DiabetesDefault from './DiabetesDefault';
+import DiabetesFeatures from './DiabetesFeatures.js';
 
 export default () => {
 
@@ -9,17 +11,17 @@ export default () => {
   return (
     <>
       { main.modelState==="DEFAULT" && (
-        <Box>Default</Box>
+        <DiabetesDefault />
       )}
-      {main.modelState==="CLASSIFIER" && (
-        <Box>Classifier</Box>
+      {main.modelState==="DEFAULT/CLASSIFIER" && (
+        <DiabetesFeatures /> 
       )}
 			{
-				(main.html && main.modelState==="DATA_ANALYSIS") && (
+				(main.html && main.modelState==="DEFAULT/DATA_ANALYSIS") && (
 					<iframe
 						srcDoc={main.html}
 						title={main.model}
-						width="100%"
+            width="100%"
 						height="100%"
 						style={{ 
 							border: 'none',

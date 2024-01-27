@@ -4,6 +4,7 @@ import { useTheme } from '@mui/material/styles';
 import { Box } from '@mui/material';
 import { MainContext } from '../../providers/MainProvider';
 import ImdbRatingsParent from './features/imdb_ratings/ImdbRatingsParent';
+import DiabetesPredictionParent from './features/diabetes_prediction/DiabetesPredictionParent';
 import BreadCrumbs from './features/BreadCrumbs';
 
 export default () => {
@@ -31,6 +32,9 @@ export default () => {
       }}>
         { main.model === "IMDB Ratings" && (
           <ImdbRatingsParent />
+        )}
+        { main.model === "Diabetes Prediction" && (
+          <DiabetesPredictionParent/>
         )}
       </Box>
 		</Mainframe>

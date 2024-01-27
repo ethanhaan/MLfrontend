@@ -4,24 +4,18 @@ import { useState } from 'react';
 import { Box } from '@mui/material';
 import Slider from '@mui/material/Slider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { motion } from 'framer-motion';
 
 export default function IntegerSlider({ step, min, max, onChange, name, icon }) {
 
   return (
-    <motion.div 
-      style={{
-        transition: "150ms ease-out all",
-        padding: '10px',
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-      }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-    >
+    <Box sx={{
+      padding: '10px',
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'column',
+    }}>
       <Box sx={{
         display: 'flex',
         alignItems: 'center',
@@ -33,7 +27,7 @@ export default function IntegerSlider({ step, min, max, onChange, name, icon }) 
           icon={icon} 
           style={{
             color: 'rgba(0, 0, 0, 0.54)',
-            marginRight: '8px',
+            margin: '1 8px',
             verticalAlign: 'middle',
           }}
         />
@@ -58,6 +52,6 @@ export default function IntegerSlider({ step, min, max, onChange, name, icon }) 
         onChange = {onChange}
         name = {name}
       />
-    </motion.div>
+    </Box>
   )
 }

@@ -1,12 +1,12 @@
 import { useEffect, useState, useContext} from 'react';
 import { useTheme } from '@mui/material/styles';
-import { MainContext } from '../../MLPanel/MLPanel.js';
+import { MainContext } from '../../../../providers/MainProvider.js';
 import { Box } from '@mui/material';
-import IntegerInput from '../components/IntegerInput.js';
-import IntegerSlider from '../components/IntegerSlider.js';
-import SubmitButton from '../components/SubmitButton.js';
+import Input from '../../components/Input.js';
+import TextSlider from '../../components/IntegerSlider.js';
+import SubmitButton from '../../components/SubmitButton.js';
 import { faPersonPregnant, faCubesStacked, faDroplet, faRuler, faFlask, faWeightScale, faCircleInfo, faUser } from '@fortawesome/free-solid-svg-icons';
-import { usePostDiabetesPrediction } from '../../../api/diabetes_prediction/diabetesPredictionApi.js';
+import { usePostDiabetesPrediction } from '../../../../api/diabetes_prediction/diabetesPredictionApi.js';
 
 export default () => {
 
@@ -42,54 +42,57 @@ export default () => {
   }
     
   return (
+    <>
       <Box sx={{
           width: '100%',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          // border: '1px solid red',
-          height: '100%',
+          // height: '100%',
+          marginTop: '30px',
       }}>
           <Box sx={{
-              width: '100%',
-              height: '100%',
+              width: '80%',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'top',
               alignItems: 'flex-start',
-              // border: '1px solid blue',
           }}>
-              <IntegerInput 
+              <Input 
                 name="Pregnancies" 
                 onChange={handleInputChange} 
                 value={formValues["Pregnancies"]}
                 icon={faPersonPregnant}
-                // type=
+                type="Number"
               />
-              <IntegerInput 
+              <Input 
                 name="Glucose" 
                 onChange={handleInputChange} 
                 value={formValues["Glucose"]}
                 icon={faCubesStacked}
+                type="Number"
               />
-              <IntegerInput 
+              <Input 
                 name="BloodPressure" 
                 onChange={handleInputChange} 
                 value={formValues["BloodPressure"]}
                 icon={faDroplet}
+                type="Number"
               />
-              <IntegerInput 
-                name="SkinThickness" 
-                onChange={handleInputChange} 
-                value={formValues["SkinThickness"]}
+              {/* <Input  */}
+              {/*   name="SkinThickness"  */}
+              {/*   onChange={handleInputChange}  */}
+              {/*   value={formValues["SkinThickness"]} */}
+              {/*   icon={faRuler} */}
+              {/* /> */}
+              <TextSlider
+                name="SkinThickness"
+                onChange={handleInputChange}
                 icon={faRuler}
-              />
-              <IntegerSlider
                 step={5}
                 min={0}
                 max={40}
               />
-              <SubmitButton onClick={handleSubmit}/>
           </Box>
           <Box sx={{
               width: '100%',
@@ -99,33 +102,46 @@ export default () => {
               justifyContent: 'top',
               alignItems: 'flex-start',
           }}>
-              <IntegerInput 
+              <Input 
                 name="Insulin" 
                 onChange={handleInputChange} 
                 value={formValues["Insulin"]}
                 icon={faFlask}
+                type="Number"
               />
-              <IntegerInput 
+              <Input 
                 name="BMI" 
                 onChange={handleInputChange} 
                 value={formValues["BMI"]}
                 icon={faWeightScale}
+                type="Number"
                 float
               />
-              <IntegerInput 
+              <Input 
                 name="DiabetesPedigreeFunction" 
                 onChange={handleInputChange} 
                 value={formValues["DiabetesPedigreeFunction"]}
                 icon={faCircleInfo}
+                type="Number"
                 float
               />
-              <IntegerInput 
+              <Input 
                 name="Age" 
                 onChange={handleInputChange} 
                 value={formValues["Age"]}
                 icon={faUser}
+                type="Number"
               />
           </Box>
       </Box>
+      <Box sx={{
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+        <SubmitButton onClick={handleSubmit}/>
+      </Box>
+    </>
   )
 }
