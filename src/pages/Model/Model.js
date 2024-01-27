@@ -4,6 +4,7 @@ import { useTheme } from '@mui/material/styles';
 import { Box } from '@mui/material';
 import { MainContext } from '../../providers/MainProvider';
 import ImdbRatingsParent from './features/imdb_ratings/ImdbRatingsParent';
+import FinancialNewsAnalysisParent from './features/financial_news_analysis/FinancialNewsAnalysisParent';
 import BreadCrumbs from './features/BreadCrumbs';
 
 export default () => {
@@ -15,12 +16,13 @@ export default () => {
 		<Mainframe sx={{
 			flex: 3.5,
 			paddingLeft: '0px',
+      paddingRight: '0px',
       display: "flex",
       flexDirection: "column",
 		}}>
       <Box sx={{ 
         marginLeft: "36px",
-        paddingBottom: "12px",
+        paddingBottom: "26px",
         borderBottom: "solid 1px #3b3b3b",
       }}>
         <BreadCrumbs />
@@ -31,6 +33,9 @@ export default () => {
       }}>
         { main.model === "IMDB Ratings" && (
           <ImdbRatingsParent />
+        )}
+        { main.model === "Financial News Analysis" && (
+          <FinancialNewsAnalysisParent />
         )}
       </Box>
 		</Mainframe>

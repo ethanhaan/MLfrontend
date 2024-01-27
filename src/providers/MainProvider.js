@@ -7,9 +7,10 @@ export const MainContext = createContext();
 export default ({children}) => {
 
   const mainInitial = {
-		model: null,
+		model: "Financial News Analysis",
 		modelsAvailable: [],
-    modelState: "DEFAULT",
+    modelState: "DEFAULT/CLASSIFIER",
+    popupComponent: null,
     showDataAnalysis: true,
 		selectedClassifier: null,
 		features: [],
@@ -34,7 +35,12 @@ export default ({children}) => {
 
 	useEffect(() => {
 		if(main && main.model) {
-			setMain({...main, modelsAvailable: apiModelCalls[main.model].data, features: apiFeatureCalls[main.model].data, html: apiHtmlCalls[main.model].data })	
+			setMain({
+        ...main, 
+        modelsAvailable: apiModelCalls[main.model]? apiModelCalls[main.model].data: [], 
+        features: apiFeatureCalls[main.model] ? apiFeatureCalls[main.model].data : [], 
+        html: apiHtmlCalls[main.model] ? apiHtmlCalls[main.model].data: [] 
+      })	
 		}
     console.log(main);
 	}, [main.model]);
