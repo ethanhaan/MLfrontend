@@ -14,7 +14,7 @@ export default () => {
 		},
 		{
 			name: "Natural Language Processing",
-			classificationTasks: []
+			classificationTasks: ["Financial News Analysis"]
 		},
 		{
 			name: "Deep Learning",

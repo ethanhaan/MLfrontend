@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { MainContext } from '../../../providers/MainProvider';
 import { useContext } from 'react';
 import { Box } from '@mui/material';
@@ -51,6 +52,7 @@ export default () => {
       display: "flex",
       alignItems: "center",
       gap: "8px",
+      height: "24px",
     }}>
       <BreadCrumb onClick={()=>setMain({...main, modelState: "DEFAULT"})}>
         { main.model }
