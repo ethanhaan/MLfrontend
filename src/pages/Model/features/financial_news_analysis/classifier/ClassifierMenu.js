@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import PageTransitionWrapper from '../../../../../components/PageTransitionWrapper';
 import Data from './data/Data';
+import Scraper from './scraper/Scraper';
 import { AnimatePresence } from 'framer-motion';
 import { Tabs, Tab } from '@mui/material';
 import { ReactComponent as DatabaseIcon } from '../../../../../icons/database-regular.svg';
+import { ReactComponent as MagnifyingGlassIcon } from '../../../../../icons/magnifying-glass-waveform-regular.svg';
 
 const tabData = [
 	{
@@ -13,8 +15,9 @@ const tabData = [
     icon: <DatabaseIcon width="16px"/>
 	},
 	{
-		value: "uollar",
-		label: "Uollar"
+		value: "SCRAPE",
+		label: "New Scrape",
+    icon: <MagnifyingGlassIcon width="20px"/>
 	},
 ]
 
@@ -80,8 +83,8 @@ export default () => {
 					key={tabValue}
 				>
 					<AnimatePresence>
-						{ tabValue === "DATA" && <Data />}
-						{ tabValue === "" && <div>Uollar</div> }
+						{ tabValue === "DATA" && <Data setTabValue={setTabValue} />}
+						{ tabValue === "SCRAPE" && <Scraper /> }
 					</AnimatePresence>
 				</motion.div>
 			</div>

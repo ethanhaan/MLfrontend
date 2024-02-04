@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import { useSpring, animated } from '@react-spring/web';
 import SvgIcon from '@mui/material/SvgIcon';
 import { data } from './SampleData';
+import { v4 as uuidv4 } from 'uuid';
 
 import Collapse from '@mui/material/Collapse';
 import { alpha, styled } from '@mui/material/styles';
@@ -103,15 +104,14 @@ const StyledTreeItem = styled(CustomTreeItem)(({ theme }) => ({
   },
 }));
 
-export default function CustomizedTreeView() {
+export default function CustomizedTreeView({data}) {
 
   const { main, setMain } = useContext(MainContext);
 
   return (
     <Box sx={{ 
       minHeight: 270, 
-      flexGrow: 1, 
-      maxWidth: 300,
+      maxWidth: "100% !important",
     }}>
       <TreeView
         aria-label="customized"
@@ -145,24 +145,20 @@ export default function CustomizedTreeView() {
             <Box sx={{ fontWeight: 600 }}>Page Data</Box>
           </Box>
         }>
-          
-        </StyledTreeItem>
-        {/*
-        <StyledTreeItem nodeId="1" label="Main">
-          <StyledTreeItem nodeId="2" label="Hello" />
-          <StyledTreeItem nodeId="3" label="Subtree with children">
-            <StyledTreeItem nodeId="6" label="Hello" />
-            <StyledTreeItem nodeId="7" label="Sub-subtree with children">
-              <StyledTreeItem nodeId="9" label="Child 1" />
-              <StyledTreeItem nodeId="10" label="Child 2" />
-              <StyledTreeItem nodeId="11" label="Child 3" />
+          {data.urls.map((url, urlIndex) => (
+            <StyledTreeItem nodeId={uuidv4()} label={url}>
+              {data["page_contents"][urlIndex] && (
+                <>
+                  {
+                    data["page_contents"][urlIndex].map((sentence) => (
+                      <StyledTreeItem nodeId={uuidv4()} label={sentence} />
+                    ))
+                  }
+                </>
+              )}
             </StyledTreeItem>
-            <StyledTreeItem nodeId="8" label="Hello" />
-          </StyledTreeItem>
-          <StyledTreeItem nodeId="4" label="World" />
-          <StyledTreeItem nodeId="5" label="Something something" />
+          ))} 
         </StyledTreeItem>
-        */}
       </TreeView>
     </Box>
   );

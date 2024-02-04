@@ -1,12 +1,36 @@
-import { useState } from 'react';
-import { Box } from '@mui/material';
+import { useState, useEffect } from 'react';
+import { Box, CircularProgress } from '@mui/material';
 import TabPageTransitionWrapper from '../TabPageTransitionWrapper';
 import NewsTextCard from './NewsTextCard';
 import NewsTreeView from './NewsTreeView';
+import { ReactComponent as PlusIcon } from '../../../../../../icons/plus-solid.svg';
+import { useGetFinancialNewsAnalysisTasks, useGetFinancialNewsAnalysisTask } from '../../../../../../api/financial_news_analysis/financialNewsAnalysisApi';
 
-export default () => {
+export default ({ setTabValue }) => {
 
-  const [ selectedData, setSelectedData ] = useState("");
+  const [ selectedId, setSelectedId ] = useState("");
+  const { data: allScrapeData, refetch: refetchAll } = useGetFinancialNewsAnalysisTasks();
+  const { data: singleScrapeData, refetch: refetchSingle } = useGetFinancialNewsAnalysisTask(selectedId);
+
+  useEffect(() => {
+    let interval;
+    if(refetchAll && !interval) {
+      interval = setInterval(() => {
+        refetchAll();
+      }, 5000); 
+    } 
+    return () => { clearInterval(interval) }
+  }, [refetchAll])
+
+  useEffect(() => {
+    let interval;
+    if(refetchSingle && !interval) {
+      interval = setInterval(() => {
+        refetchSingle();
+      }, 5000); 
+    } 
+    return () => { clearInterval(interval) }
+  }, [refetchSingle])
 
   return (
     <TabPageTransitionWrapper>
@@ -16,12 +40,40 @@ export default () => {
         height: "100%",
         gap: "32px"
       }}>
-        <Box sx={{ flex: 3 }}>
-          <Box sx={{ 
-            fontWeight: 600, 
-            color: "#3b3b3b",
+        <Box sx={{ width: "50%", position: "relative" }}>
+          <Box sx={{
+            display: "flex",
+            justifyContent: "space-between"
           }}>
-            Recent Web Scrapes
+            <Box sx={{ 
+              fontWeight: 600, 
+              color: "#3b3b3b",
+            }}>
+              Recent Web Scrapes
+            </Box>
+            <Box 
+              sx={{
+                color: "#3B3B3B !important",
+                transition: "all 200ms ease",
+                borderRadius: "4px",
+                fontSize: "12px",
+                marginRight: "24px",
+                padding: "6px 10px",
+                "&:hover": { 
+                  backgroundColor: "#00000009",
+                },
+                transform: "translateY(-6px)",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+                fontWeight: 500,
+              }}
+              onClick={()=>setTabValue("SCRAPE")}
+            >
+              <PlusIcon width="12px" fill="#3B3B3B"/>
+              Add New Scrape
+            </Box>
           </Box>
           <Box sx={{
             height: "100%",
@@ -29,37 +81,36 @@ export default () => {
             overflowY: "scroll",
             overflowX: "hidden",
           }}>
-            <Box sx={{
-              height: "14px"
-            }}/>
-            <NewsTextCard 
-              searchText="Apple Stock"
-              status="IN_PROGRESS"
-              timestamp={new Date("2024-01-26T15:00:00")}
-            />
-            <NewsTextCard 
-              searchText="Apple Stock"
-              status="COMPLETE"
-              timestamp={new Date("2024-01-26T15:00:00")}
-            />
-            <NewsTextCard 
-              searchText="Apple Stock"
-              status="COMPLETE"
-              timestamp={new Date("2024-01-26T15:00:00")}
-            />
-            <NewsTextCard 
-              searchText="Apple Stock"
-              status="COMPLETE"
-              timestamp={new Date("2024-01-26T15:00:00")}
-            />
-            <NewsTextCard 
-              searchText="Apple Stock"
-              status="COMPLETE"
-              timestamp={new Date("2024-01-26T15:00:00")}
-            />
+            { (!allScrapeData || allScrapeData.isLoading) ? (
+              <Box sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+              }}>
+                <CircularProgress size="50px" color="inherit" />
+              </Box>
+            ) : (
+              <>
+                <Box sx={{
+                  height: "14px"
+                }}/>
+                {allScrapeData.data.map((scrape) => (
+                  <NewsTextCard
+                    searchText={scrape.query}
+                    status={scrape.status}
+                    timestamp={new Date(scrape.time_started)}
+                    selected={selectedId===scrape.id}
+                    onClick={()=>setSelectedId(scrape.id)}
+                  />
+                ))}
+              </>
+            )}
           </Box>
         </Box>
-        <Box sx={{ flex: 2 }}>
+        <Box sx={{ 
+          width: "50%",
+          position: "relative"
+        }}>
           <Box sx={{ 
             fontWeight: 600, 
             color: "#3b3b3b",
@@ -67,7 +118,34 @@ export default () => {
           }}>
             Data Details
           </Box>
-          <NewsTreeView />
+          { !selectedId ? (
+            <Box sx={{
+              opacity: 0.35,
+              fontSize: "16px",
+              fontWeight: 600,
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}>
+              Nothing Selected
+            </Box>
+          ) : (
+            <>
+            { (!singleScrapeData || singleScrapeData.isLoading) ? (
+              <Box sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+              }}>
+                <CircularProgress size="50px" color="inherit" />
+              </Box>
+            ) : (
+                <NewsTreeView data={singleScrapeData.data}/>
+            )}
+            </>
+          )}
         </Box>
       </Box>
     </TabPageTransitionWrapper>

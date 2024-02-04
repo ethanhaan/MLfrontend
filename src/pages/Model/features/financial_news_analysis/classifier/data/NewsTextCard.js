@@ -7,7 +7,7 @@ import { ReactComponent as CheckIcon } from '../../../../../../icons/circle-chec
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-export default ({ searchText, status, timestamp, delay, sx, onClick }) => {
+export default ({ searchText, status, timestamp, delay, sx, onClick, selected }) => {
   
   const [ rendered, setRendered ] = useState(false);
   const [ hovered, setHovered ] = useState(false);
@@ -42,7 +42,7 @@ export default ({ searchText, status, timestamp, delay, sx, onClick }) => {
       <Box sx={{
         height: "100%",
         position: "relative",
-        border: "solid #a8a8a8aa 1px",
+        border: `solid ${selected ? "#3b3b3b": "#a8a8a8aa"} 1px`,
         borderRadius: "12px",
         display: "flex",
         padding: "24px",
