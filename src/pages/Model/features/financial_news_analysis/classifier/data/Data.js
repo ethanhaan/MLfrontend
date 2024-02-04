@@ -3,6 +3,7 @@ import { Box, CircularProgress } from '@mui/material';
 import TabPageTransitionWrapper from '../TabPageTransitionWrapper';
 import NewsTextCard from './NewsTextCard';
 import NewsTreeView from './NewsTreeView';
+import Button from '../../../../components/Button';
 import { ReactComponent as PlusIcon } from '../../../../../../icons/plus-solid.svg';
 import { useGetFinancialNewsAnalysisTasks, useGetFinancialNewsAnalysisTask } from '../../../../../../api/financial_news_analysis/financialNewsAnalysisApi';
 
@@ -51,29 +52,17 @@ export default ({ setTabValue }) => {
             }}>
               Recent Web Scrapes
             </Box>
-            <Box 
+            <Button
+              icon={<PlusIcon width="12px" fill="#3B3B3B" />}
               sx={{
-                color: "#3B3B3B !important",
-                transition: "all 200ms ease",
-                borderRadius: "4px",
-                fontSize: "12px",
+                transform: "translateY(-6px)",
                 marginRight: "24px",
                 padding: "6px 10px",
-                "&:hover": { 
-                  backgroundColor: "#00000009",
-                },
-                transform: "translateY(-6px)",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                gap: "4px",
-                fontWeight: 500,
               }}
               onClick={()=>setTabValue("SCRAPE")}
-            >
-              <PlusIcon width="12px" fill="#3B3B3B"/>
+             >
               Add New Scrape
-            </Box>
+            </Button>
           </Box>
           <Box sx={{
             height: "100%",
@@ -94,13 +83,14 @@ export default ({ setTabValue }) => {
                 <Box sx={{
                   height: "14px"
                 }}/>
-                {allScrapeData.data.map((scrape) => (
+                {allScrapeData.data.map((scrape, index) => (
                   <NewsTextCard
                     searchText={scrape.query}
                     status={scrape.status}
                     timestamp={new Date(scrape.time_started)}
                     selected={selectedId===scrape.id}
                     onClick={()=>setSelectedId(scrape.id)}
+                    delay={0.075*index}
                   />
                 ))}
               </>

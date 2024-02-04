@@ -124,7 +124,12 @@ export default function CustomizedTreeView({data}) {
         <StyledTreeItem nodeId="1" label={
           <Box sx={{ display: "flex", gap: "6px"}}>
             <Box sx={{ fontWeight: 600 }}>Status: </Box>
-            <Box sx={{ fontWeight: 500, color: "#25B063"}}>{data.status}</Box>
+            {data.status === "COMPLETE" && (
+              <Box sx={{ fontWeight: 500, color: "#25B063"}}>Complete</Box>
+            )}
+            {data.status === "IN_PROGRESS" && (
+              <Box sx={{ fontWeight: 500, color: "#FBBD25"}}>In Progress</Box>
+            )}
           </Box>
         }/>
         <StyledTreeItem nodeId="2" label={
@@ -133,11 +138,15 @@ export default function CustomizedTreeView({data}) {
           </Box>
         }>
           <StyledTreeItem nodeId="3" label={
-            <Box
-              onClick={()=>setMain({...main, popupComponent: <TextViewer text={data.result} />})}
-            >
-              {data.result.substring(0, 100)+"..."}
-            </Box>
+            data.result ? (
+              <Box
+                onClick={()=>setMain({...main, popupComponent: <TextViewer text={data.result} />})}
+              >
+                {data.result.substring(0, 100)+"..."}
+              </Box>
+            ) : (
+              <Box>No Result Yet</Box>
+            )
           }/>
         </StyledTreeItem>
         <StyledTreeItem nodeId="4" label={
