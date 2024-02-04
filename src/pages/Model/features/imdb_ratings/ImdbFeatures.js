@@ -7,6 +7,7 @@ import Input from '../../components/Input.js';
 import { faFile } from '@fortawesome/free-solid-svg-icons';
 import SubmitButton from '../../components/SubmitButton.js';
 import ClassifierDropdown from '../../components/ClassifierDropdown.js';
+import { motion } from 'framer-motion';
 
 export default () => {
 
@@ -57,14 +58,18 @@ export default () => {
           width= '450px'
         />
       </Box>
-      <Box sx={{
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
+      <motion.div 
+        style={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
+      >
         <SubmitButton onClick={handleSubmit}/>
-      </Box>
+      </motion.div>
   </>
   )
 }

@@ -12,7 +12,7 @@ export const theme = createTheme({
 		MuiButton: {
 			styleOverrides: {
 				root: {
-					fontSize: "50px"
+					fontSize: "50px",
 				}
 			}
 		},
