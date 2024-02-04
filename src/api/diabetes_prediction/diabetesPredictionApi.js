@@ -21,7 +21,7 @@ export const useGetDiabetesPredictionHtml = () => useQuery({
 })
 
 export const usePostDiabetesPrediction = () => useMutation({
-  queryKey: ['diabetesPredictionRandomForest'],
+  queryKey: ['diabetesPrediction'],
   mutationFn: async ({ formValues, classifier }) => {
     const pathToHtmlFile = `/model/diabetes_prediction/${classifier}`
     const response = await axiosClient.post(pathToHtmlFile, formValues);

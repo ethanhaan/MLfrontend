@@ -9,11 +9,11 @@ export default function SubmitButton({ onClick }) {
   return (
     <motion.div
       style={{
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'right',
-        alignItems: 'center',
-        marginTop: '20px', 
+        // width: '100%',
+        // display: 'flex',
+        // justifyContent: 'right',
+        // alignItems: 'center',
+        marginTop: '5px',
       }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

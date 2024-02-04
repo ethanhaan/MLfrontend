@@ -7,6 +7,7 @@ import TextSlider from '../../components/IntegerSlider.js';
 import SubmitButton from '../../components/SubmitButton.js';
 import { faPersonPregnant, faCubesStacked, faDroplet, faRuler, faFlask, faWeightScale, faCircleInfo, faUser } from '@fortawesome/free-solid-svg-icons';
 import { usePostDiabetesPrediction } from '../../../../api/diabetes_prediction/diabetesPredictionApi.js';
+import ClassifierDropdown from '../../components/ClassifierDropdown.js';
 
 export default () => {
 
@@ -23,7 +24,6 @@ export default () => {
     Age: '',
   })
 
-  // Make dictionary with all mutate api's and call based on Model.CurrentClassifier
   const { mutate: postDiabetesPrediction, isLoading, isError } = usePostDiabetesPrediction();
 
   const handleInputChange = (e) => {
@@ -44,19 +44,25 @@ export default () => {
   return (
     <>
       <Box sx={{
+        marginTop: '20px',
+        marginLeft: '36px',
+      }}>
+        <ClassifierDropdown />
+      </Box>
+      <Box sx={{
           width: '100%',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          // height: '100%',
-          marginTop: '30px',
+          marginTop: '10px',
       }}>
           <Box sx={{
-              width: '80%',
+              width: '100%',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'top',
-              alignItems: 'flex-start',
+              alignItems: 'flex-end',
+              marginRight: '30px',
           }}>
               <Input 
                 name="Pregnancies" 
@@ -101,6 +107,7 @@ export default () => {
               flexDirection: 'column',
               justifyContent: 'top',
               alignItems: 'flex-start',
+              marginLeft: '30px',
           }}>
               <Input 
                 name="Insulin" 

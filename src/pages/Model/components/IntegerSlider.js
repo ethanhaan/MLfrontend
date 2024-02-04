@@ -12,8 +12,9 @@ export default function IntegerSlider({ step, min, max, onChange, name, icon }) 
     <motion.div 
       style={{
         transition: "150ms ease-out all",
-        padding: '10px',
-        width: '100%',
+        padding: '20px 0px',
+        width: '200px',
+        height: '55px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

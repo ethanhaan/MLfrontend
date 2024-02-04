@@ -16,6 +16,15 @@ export default () => {
       height: "100%",
     }}>
       <Box sx={{
+        marginLeft: '36px',
+        padding: '10px',
+        width: '69%',
+        fontSize: '14px',
+        color: '#676464',
+      }}>
+        The IMDB Ratings AI Classifier is a sophisticated tool designed to analyze and predict the ratings of movies and TV shows on the Internet Movie Database (IMDb) platform.
+      </Box>
+      <Box sx={{
         width: "100%",
         height: "100%",
         display: "flex",

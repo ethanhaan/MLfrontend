@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import InputAdornment from '@mui/material/InputAdornment';
 import { motion } from 'framer-motion';
 
-export default function Input({ value, onChange, name, icon, type, float = false }) {
+export default function Input({ value, onChange, name, icon, type, float = false, width }) {
 
   const [error, setError] = useState(false);
 
@@ -34,7 +34,8 @@ export default function Input({ value, onChange, name, icon, type, float = false
       style={{
         transition: "150ms ease-out all",
         padding: '20px 0px',
-        width: '100%',
+        width: width,
+        height: '55px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -45,7 +46,6 @@ export default function Input({ value, onChange, name, icon, type, float = false
       <TextField
         error = {error}
         id = "outlined-error-helper-text"
-
         type = {type}
         name = {name}
         value = {value}
@@ -58,6 +58,9 @@ export default function Input({ value, onChange, name, icon, type, float = false
               <FontAwesomeIcon icon={icon} />
             </InputAdornment>
           )
+        }}
+        style={{
+          width: width
         }}
       />
     </motion.div>

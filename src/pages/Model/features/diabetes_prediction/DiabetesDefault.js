@@ -16,6 +16,15 @@ export default () => {
       height: "100%",
     }}>
       <Box sx={{
+        marginLeft: '36px',
+        padding: '10px',
+        width: '69%',
+        fontSize: '14px',
+        color: '#676464',
+      }}>
+        The Diabetes Prediction Classifier is an advanced analytical tool engineered to assess and forecast the likelihood of diabetes in individuals. 
+      </Box>
+      <Box sx={{
         width: "100%",
         height: "100%",
         display: "flex",

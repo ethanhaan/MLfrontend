@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import { useContext } from 'react';
 import { MainContext } from '../../../../providers/MainProvider';
 import ImdbDefault from './ImdbDefault';
+import ImdbFeatures from './ImdbFeatures.js';
 
 export default () => {
 
@@ -13,7 +14,7 @@ export default () => {
         <ImdbDefault />
       )}
       {main.modelState==="DEFAULT/CLASSIFIER" && (
-        <Box>Classifier</Box>
+        <ImdbFeatures />
       )}
 			{
 				(main.html && main.modelState==="DEFAULT/DATA_ANALYSIS") && (

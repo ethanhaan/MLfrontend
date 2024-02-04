@@ -1,5 +1,5 @@
 import axiosClient from '../axiosClient';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 
 export const useGetImdbRatingsModels = () => useQuery({ 
 	queryKey: ['imdbRatingsModels'],
@@ -18,4 +18,16 @@ export const useGetImdbRatingsHtml = () => useQuery({
 		const response = await axiosClient.get(pathToHtmlFile);
 		return response.data;
 	}
+})
+
+export const usePostImdbPrediction = () => useMutation({
+  queryKey: ['imdbPrediction'],
+  mutationFn: async ({ formValues, classifier }) => {
+    const pathToHtmlFile = `/model/imdb_ratings/${classifier}`
+    const response = await axiosClient.post(pathToHtmlFile, formValues);
+    return response.data;
+  },
+  onSuccess: (data) => {
+    console.log("Response: ", data);
+  }
 })

@@ -16,17 +16,17 @@ export const theme = createTheme({
 				}
 			}
 		},
-		MuiSelect: {
-			styleOverrides: {
-				root: {
-					border: "1px #E5E5E5 solid",
-					fontFamily: "Poppins",
-					"& .MuiOutlinedInput-notchedOutline": {
-						border: "none",
-					},
-				}
-			}
-		},
+		// MuiSelect: {
+		// 	styleOverrides: {
+		// 		root: {
+		// 			border: "1px #E5E5E5 solid",
+		// 			fontFamily: "Poppins",
+		// 			"& .MuiOutlinedInput-notchedOutline": {
+		// 				border: "none",
+		// 			},
+		// 		}
+		// 	}
+		// },
     MuiSlider: {
       styleOverrides: {
         root: {
