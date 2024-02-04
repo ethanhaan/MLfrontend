@@ -30,39 +30,25 @@ export default function Input({ value, onChange, name, icon, type, float = false
   }
 
   return (
-    <motion.div
+    <TextField
+      error = {error}
+      id = "outlined-error-helper-text"
+      type = {type}
+      name = {name}
+      value = {value}
+      label = {name}
+      onChange = {handleChange}
+      variant = "outlined"
+      InputProps = {{
+        startAdornment: (
+          <InputAdornment position="start">
+            <FontAwesomeIcon icon={icon} />
+          </InputAdornment>
+        )
+      }}
       style={{
-        transition: "150ms ease-out all",
-        padding: '20px 0px',
-        width: width,
-        height: '55px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }} 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-    >
-      <TextField
-        error = {error}
-        id = "outlined-error-helper-text"
-        type = {type}
-        name = {name}
-        value = {value}
-        label = {`Enter ${name}`}
-        onChange = {handleChange}
-        variant = "outlined"
-        InputProps = {{
-          startAdornment: (
-            <InputAdornment position="start">
-              <FontAwesomeIcon icon={icon} />
-            </InputAdornment>
-          )
-        }}
-        style={{
-          width: width
-        }}
-      />
-    </motion.div>
+        width: width
+      }}
+    />
   )
 }
