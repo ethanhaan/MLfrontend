@@ -27,14 +27,23 @@ LinearProgressWithLabel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export default ({ scrapeMutation, selectedId }) => {
+export default ({ scrapeData, limit }) => {
 
-  const [progress, setProgress] = React.useState(10);
+  const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
-    }, 800);
+      setProgress(() => {
+        let progress = 0;
+        if(scrapeData && scrapeData["urls"]) {
+          progress = 10
+        } 
+        else if(scrapeData && scrapeData["page_contents"]){
+          progress = 10 + 0.9*(scrapeData["page_contents"].length/limit)
+        }
+        return progress;
+      })
+    }, 500);
     return () => {
       clearInterval(timer);
     };
