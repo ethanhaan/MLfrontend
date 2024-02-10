@@ -1,7 +1,7 @@
 import { Box, CircularProgress } from '@mui/material';
 import ScrapeInProgress from './ScrapeInProgress';
 
-export default ({ scrapeMutation,  }) => {
+export default ({ scrapeMutation, scrapeData, limit }) => {
   switch(scrapeMutation.status) {
     case "idle":
       return (
@@ -34,7 +34,7 @@ export default ({ scrapeMutation,  }) => {
       )
     case "success":
       return (
-        <ScrapeInProgress />
+        <ScrapeInProgress scrapeData={scrapeData} limit={limit}/>
       )
     case "error":
       return (

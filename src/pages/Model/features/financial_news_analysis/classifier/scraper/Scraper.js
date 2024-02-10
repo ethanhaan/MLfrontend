@@ -89,8 +89,9 @@ export default () => {
             Scrape Progress
           </Box>
           <ScrapeProgress 
-            scrapeMutation={scrapeMutation} 
+            scrapeMutation={scrapeMutation}
             scrapeData={singleScrapeData}
+            limit={limit}
           />
         </Box>
         <Box sx={{ 
