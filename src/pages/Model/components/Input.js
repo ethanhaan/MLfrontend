@@ -47,7 +47,7 @@ export default function Input({ value, onChange, name, icon, type, float = false
         )
       }}
       style={{
-        width: width
+        width: width,
       }}
     />
   )

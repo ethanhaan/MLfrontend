@@ -28,7 +28,7 @@ export default function ClassifierDropdown() {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          transform: 'translate(15px, 10px)',
+          transform: 'translate(15px, 7px)',
           '&.Mui-focused': {
             transform: 'translate(15px, -40%) scale(0.75)', 
           },
@@ -45,13 +45,15 @@ export default function ClassifierDropdown() {
             displayEmpty
             sx={{ 
               width: "180px",
-              height: "40px",
+              height: "35px",
+              color: '#2B2B2B',
+              fontFamily: "Montserrat",
               ".MuiSelect-select": {
                 height: "40px", // Make sure the select height matches the container
                 lineHeight: "40px", // Use line height to center text vertically
                 paddingTop: 0,
                 paddingBottom: 0,
-                // paddingLeft: '5px',
+                paddingLeft: '6px',
               },
             }}
           >

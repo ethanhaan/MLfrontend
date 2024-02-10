@@ -8,6 +8,9 @@ import { faFile } from '@fortawesome/free-solid-svg-icons';
 import SubmitButton from '../../components/SubmitButton.js';
 import ClassifierDropdown from '../../components/ClassifierDropdown.js';
 import { motion } from 'framer-motion';
+import Button from '../../components/Button.js';
+import { ReactComponent as PlaneIcon } from '../../../../icons/paper-plane-top-solid.svg';
+import SendIcon from '@mui/icons-material/Send';
 
 export default () => {
 
@@ -48,6 +51,7 @@ export default () => {
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: '30px',
+        gap: '10px'
       }}>
         <Input 
           name="Review"
@@ -57,19 +61,28 @@ export default () => {
           type="String"
           width= '450px'
         />
+        <motion.div 
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          initial={{opacity: 0}}
+          animate={{opacity: 1}}
+        >
+          <Button 
+            sx={{
+              width: '25px',
+              height: '25px',
+              padding: '10px',
+              fill: '#3B3B3B',
+            }}
+            onClick={handleSubmit}
+            icon= <PlaneIcon/>
+          >
+          </Button>
+        </motion.div>
       </Box>
-      <motion.div 
-        style={{
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-        initial={{opacity: 0}}
-        animate={{opacity: 1}}
-      >
-        <SubmitButton onClick={handleSubmit}/>
-      </motion.div>
   </>
   )
 }

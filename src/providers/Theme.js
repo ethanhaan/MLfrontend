@@ -91,7 +91,7 @@ export const theme = createTheme({
 					textarea: { fontFamily: "Poppins" },
 					input: { fontFamily: "Poppins" },
 					"&:hover": {
-						borderColor: "#1B56BA",
+						borderColor: "#3B3B3B",
 						boxShadow: "#1B56BA44 0px 0px 5px 1px",
 					},
 					"&.Mui-focused": {
